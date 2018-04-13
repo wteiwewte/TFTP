@@ -18,9 +18,9 @@ Both client and server were implemented in similar way.
 Client manages all received packets in map. After each transfer window he sends ACK to server with
 minimal index of packet he didn't get yet. To test correctness, from data blocks is calculated md5 hash.
 
-Server listens for upcoming requests and for each RRQ he starts a new thread which at first read whole file and
-save all data blocks in map. Then, in transfer windows of size equal to windowsize (set by client) he's sending that data.
-In case of timeout while waiting for ACK, server sends last transfer window again.
+Server listens for upcoming requests and for each RRQ he starts a new thread which at first reads whole file and
+saves all data blocks in map. Then, in transfer windows of size equal to windowsize (set by client) he sends that data.
+In case of timeout while waiting for ACK, server repeats sending last transfer window.
 
 Except for that, both files contain a couple of supplementary functions whose main goal is to parse packets
 and check correctness of input.
@@ -28,8 +28,8 @@ and check correctness of input.
 
 ### Running
 
-To run client, type './client.py server_name filename (default number of port is 6969).
-Analogously, to run server type './server.py port_nr dir_path.
+To run client, type './client.py server_name filename' (default number of port is 6969).
+Analogously, to run server type './server.py port_nr dir_path'.
 
 ### Tests
 
